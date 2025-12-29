@@ -1,20 +1,30 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import userData from '../data/users.json'; // Importing the JSON data
 
-// We iterate over the array in the JSON file
-for (const user of userData) {
+// 1. Determine the environment (default to 'staging')
+const envName = process.env.ENV || 'staging';
 
-    test(`Login Test: ${user.id}`, async ({ page }) => {
-        const loginPage = new LoginPage(page);
+// 2. Dynamically load the user data based on the environment
+// Ensure your file is at: config/staging/users.json
+const userData = require(`../config/${envName}/users.json`);
 
-        // 1. Navigate to the site
-        await loginPage.goto();
+// 3. Group the tests using describe to organize the report
+test.describe(`Login Tests - Environment: ${envName}`, () => {
 
-        // 2. Perform Login using data from JSON
-        await loginPage.login(user.username, user.password);
+    for (const user of userData) {
 
-        // 3. Verify the result matches our expected data
-        await loginPage.verifyMessage(user.expectedMessage);
-    });
-}
+        test(`User ID: ${user.id}`, async ({ page }) => {
+            const loginPage = new LoginPage(page);
+
+            // Navigate (Base URL is handled by playwright.config.ts)
+            await loginPage.goto();
+
+            // Perform Login
+            await loginPage.login(user.username, user.password);
+
+            // Verify
+            await loginPage.verifyMessage(user.expectedMessage);
+        });
+    }
+
+});
