@@ -1,0 +1,32 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Node.js dependencies
+
+npm-debug.log
+yarn-error.log
+package-lock.json # Optional: Keep this if you want to lock versions, ignore if you don't. usually recommmended to COMMIT it.
+
+# Playwright specific
+
+
+
+
+
+# Environment variables (Never commit credentials!)
+.env
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
