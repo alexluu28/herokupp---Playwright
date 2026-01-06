@@ -17,7 +17,7 @@ test.describe(`Login Tests - Environment: ${envName}`, () => {
             const loginPage = new LoginPage(page);
 
             // Navigate (Base URL is handled by playwright.config.ts)
-            await loginPage.goto();
+            await loginPage.navigateToLoginPage();
 
             // Perform Login
             await loginPage.login(user.username, user.password);

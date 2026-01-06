@@ -16,8 +16,9 @@ export class LoginPage {
         this.flashMessage = page.locator('#flash');
     }
 
-    async goto() {
-        await this.page.goto('/login');    }
+    async navigateToLoginPage() {
+        await this.page.goto('/login');
+    }
 
     async login(username: string, pass: string) {
         await this.usernameInput.fill(username);

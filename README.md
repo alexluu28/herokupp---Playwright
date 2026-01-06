@@ -23,6 +23,11 @@ Before you begin, ensure you have the following installed:
     npm install
     npx playwright install
     ```
+    **all tests in env**
+3. $env:ENV="prod"; npx playwright test
+
+    **single test in env**
+4. $env:ENV="prod"; npx playwright test typosTest.spec.ts
 
 ## ⚙️ Configuration (Important)
 
